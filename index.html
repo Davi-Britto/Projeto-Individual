@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#personagens">Personagens</a></li>
+                <li><a href="#trilha-sonora">Trilha sonora</a></li>
+                <li><a href="#">Login</a></li>
+                <li><a href="#">Cadastro</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="home" id="home">
+        <div class="titulo">
+            <h1>HOMEM ARANHA <br> NO ARANHA-VERSO</h1>
+        </div>
+    </div>
+
+    <div class="container" id="sobre">
+        <div class="texto-sobre">
+            <h1>Sobre o filme...</h1>
+            <p>O filme conta a história de um novo homem-aranha, Miles Morales, um jovem negro e de descendência
+                hispânica que mora no Brooklin em NY. Ao ser picado por uma aranha radioativa, ele passa por todas as
+                dúvidas e inseguranças que seu antecessor Peter Parker viveu. Porém isso fica ainda mais maluco quando o
+                Rei do Crime usa de uma nova tecnologia para abrir uma espécie de portal entre dimensões para tentar
+                trazer de volta sua família que morreu em um acidente. Da mesma forma que esse "portal" possibilita
+                trazer alguém que já morreu de uma outra dimensão, ele também permite a interação entre os vários
+                "Homens-aranhas"...</p>
+        </div>
+
+        <div class="uniforme">
+            <div class="img-sobre">
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="personagens">
+        <div class="personagens">
+            <h1>Personagens</h1>
+            <div class="sobre-personagem" id="div_personagem">
+                <img src="./img/miles.png" alt="">
+                <div>
+                    <h1>Miles Morales</h1>
+                    <p>Miles Morales é um personagem presente nos quadrinhos da Marvel Comics, que apareceu pela
+                        primeira
+                        vez em Ultimate Fallout #4. Um adolescente negro com ascendência hispânica, Miles é o segundo
+                        Homem-Aranha a aparecer em Ultimate Marvel, e com uma continuação no Universo Marvel principal
+                    </p>
+                </div>
+            </div>
+
+            <div class="opcoes-personagem">
+                <div>
+                    <button onclick="personagem1()">
+                        <img src="./img/miles-icone.jpg">
+                    </button>
+                    <button onclick="personagem2()">
+                        <img src="./img/gwen-icone.jpg">
+                    </button>
+                    <button onclick="personagem3()">
+                        <img src="./img/peter-icone.jpg">
+                    </button>
+                    <button onclick="personagem4()">
+                        <img src="./img/noir-icone.jpg">
+                    </button>
+                    <button onclick="personagem5()">
+                        <img src="./img/porco-icone.jpg">
+                    </button>
+                    <button onclick="personagem6()">
+                        <img src="./img/peni-icone.jpg">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+
+            function personagem1() {
+                div_personagem.innerHTML = `
+                <img src="./img/miles.png">
+                <div>
+                    <h1>Miles Morales</h1>
+                    <p>Miles Morales é um personagem presente nos quadrinhos da Marvel Comics, que apareceu pela primeira vez em Ultimate Fallout #4. Um adolescente negro com ascendência hispânica, Miles é o segundo Homem-Aranha a aparecer em Ultimate Marvel, e com uma continuação no Universo Marvel principal</p>
+                </div>
+                `;
+            }
+
+            function personagem2() {
+                div_personagem.innerHTML = `
+                <img src="./img/gwen.png">
+                <div>
+                    <h1>Spider-Gwen</h1>
+                    <p>Gwen-Aranha, também conhecida como Spider-Gwen ou Spider-Woman, é uma personagem fictícia dos quadrinhos da Marvel Comics. Ela apareceu pela primeira vez em 2014, na série "Edge of Spider-Verse" #2. Gwen Stacy, originalmente conhecida como o interesse amoroso de Peter Parker no universo tradicional do Homem-Aranha, recebeu uma nova abordagem como uma versão alternativa do herói.</p>
+                </div>
+                `;
+            }
+
+            function personagem3() {
+                div_personagem.innerHTML = `
+                <img src="./img/peter.png">
+                <div>
+                    <h1>Peter B. Parker</h1>
+                    <p>Peter B. Parker é uma versão alternativa do Homem-Aranha que aparece no filme. Ele vem de uma dimensão diferente da de Miles Morales e é retratado como uma versão mais velha e desgastada do herói aracnídeo. É um Homem-Aranha mais experiente e desiludido, que passou por diversos desafios e dificuldades em sua vida. Ele se separou de sua esposa, Mary Jane, e sua vida pessoal e carreira de super-herói estão em um estado decadente.</p>
+                </div>
+                `;
+            }
+
+            function personagem4() {
+                div_personagem.innerHTML = `
+                <img src="./img/noir.png">
+                <div>
+                    <h1>Homem-Aranha Noir</h1>
+                    <p>Homem-Aranha Noir é uma versão alternativa do Homem-Aranha que se passa em uma realidade conhecida como Earth-90214, um ambiente sombrio. Essa versão do herói aracnídeo é conhecida por sua abordagem mais sombria e investigativa. Ao contrário da versão clássica do Homem-Aranha, o Homem-Aranha Noir não possui superpoderes aracnídeos. Em vez disso, ele usa sua inteligência, habilidades de luta e astúcia para combater o crime.</p>
+                </div>
+                `;
+            }
+
+            function personagem5() {
+                div_personagem.innerHTML = `
+                <img src="./img/porco.png">
+                <div>
+                    <h1>Porco-Aranha</h1>
+                    <p>Porco-Aranha é uma paródia do Homem-Aranha tradicional, misturando elementos de super-heróis com humor absurdo. Ele possui os poderes do Homem-Aranha, como agilidade, força aprimorada e a habilidade de se agarrar a superfícies. Além disso, ele tem uma personalidade divertida e é conhecido por suas piadas e trocadilhos.</p>
+                </div>
+                `;
+            }
+
+            function personagem6() {
+                div_personagem.innerHTML = `
+                <img src="./img/peni.png">
+                <div>
+                    <h1>Peni Parker</h1>
+                    <p>No filme, Peni Parker é uma jovem de origem japonesa que assume o manto do Homem-Aranha em sua versão robótica chamada SP//dr.
+                    Ela é uma piloto habilidosa e é vinculada a uma inteligência artificial em forma de aranha que controla o traje robótico. A conexão neural permite que ela tenha habilidades sobre-humanas, como força e agilidade aumentadas. Ela usa o traje para proteger sua cidade e lutar contra o crime.</p>
+                </div>
+                `;
+            }
+        </script>
+    </div>
+
+    <div class="container" id="trilha-sonora">
+        <div class="musica">
+            <h1>Trilha Sonora</h1>
+            <img src="./img/musica.jpg" alt="">
+        </div>
+
+        <div class="sobre-musica">
+            <p>"Sunflower" é uma música pop lançada em 2018, interpretada por Post Malone e Swae Lee. A canção faz parte da trilha sonora do filme "Homem-Aranha no Aranhaverso" e foi um grande sucesso, alcançando posições de destaque nas paradas musicais ao redor do mundo.
+
+                A música "Sunflower" tem uma melodia cativante e uma vibe descontraída. Ela apresenta letras que falam sobre amor, amizade e superação, transmitindo uma sensação de positividade e otimismo. A faixa é reconhecida por sua batida contagiante, com elementos de pop, hip-hop e R&B.
+                
+                "Sunflower" se tornou uma das músicas mais populares associadas ao filme "Homem-Aranha no Aranhaverso" e ajudou a impulsionar ainda mais a sua popularidade. A canção ganhou prêmios e recebeu indicações em diversas premiações, incluindo o Billboard Music Awards e o Grammy Awards.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>SITE FEITO PELO ALUNO SPTECH: <b>Davi Maciel</b></p>
+        <p>todos direitos reservados ©</p>
+    </footer>
+</body>
+
+</html>
