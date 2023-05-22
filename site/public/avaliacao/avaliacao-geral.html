@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/avaliacao-geral.css">
+    <link rel="shortcut icon" href="favicon.ico">
+</head>
+
+<body>
+    <div class="janela">
+        <div class="nav-lateral">
+            <img src="./../img/Logo-icone/logo-semfundo.png" alt="">
+            <h1>Avaliação</h1>
+
+            <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+
+            <div class="itens-nav">
+                <a href="./avaliacao.html">Avaliar</a>
+                <a href="./avaliacao-geral.html" class="pag-atual">Ver Avaliações</a>
+            </div>
+
+            <a href="./../login.html" class="sair"><button>Sair</button></a>
+        </div>
+
+        <div class="avaliar">
+            <div class="titulo-avaliacao">
+                <h1>Avaliações</h1>
+                <h3>Todas as avaliações do filme: <br> Homem Aranha no Aranhaverso
+                </h3>
+            </div>
+
+            <div>
+                <table>
+                    <tr>
+                        <th>Id</th>
+                        <th>Usuário</th>
+                        <th>Descrição</th>
+                        <th>Estrelas</th>
+                    </tr>
+
+                    <tr>
+                        
+                    </tr>
+                </table>
+            </div>
+
+            <div class="avaliacao-publicada">
+                <div id="feed_container" class="feed-container">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+</body>
+
+</html>
+
+<script>
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+    
+</script>

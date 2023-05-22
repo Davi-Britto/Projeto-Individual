@@ -20,7 +20,7 @@ body{
     width: 100%;
     height: 100vh;
     content: "";
-    background-image: url(./img/fundos/fundo-home1.jpg);
+    background-image: url(./../img/fundos/fundo-home1.jpg);
     background-size: cover;
     filter: brightness(50%);
     z-index: -1;

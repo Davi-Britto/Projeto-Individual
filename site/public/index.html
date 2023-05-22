@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
@@ -26,7 +26,7 @@
 
     <div class="home" id="home">
         <div class="titulo">
-            <h1>HOMEM ARANHA <br> NO ARANHA-VERSO</h1>
+            <h1>HOMEM ARANHA <br> NO ARANHAVERSO</h1>
         </div>
     </div>
 
@@ -88,10 +88,11 @@
         </div>
 
         <script>
-
+            var listaImagens = ['<img src="./img/personagens/miles.png">', '<img src="./img/personagens/gwen.png">', '<img src="./img/personagens/peter.png">', '<img src="./img/personagens/noir.png">', '<img src="./img/personagens/porco.png">', '<img src="./img/personagens/peni.png">'];
+            
             function personagem1() {
                 div_personagem.innerHTML = `
-                <img src="./img/personagens/miles.png">
+                ${listaImagens[0]}
                 <div>
                     <h1>Miles Morales</h1>
                     <p>Miles Morales é um personagem presente nos quadrinhos da Marvel Comics, que apareceu pela primeira vez em Ultimate Fallout #4. Um adolescente negro com ascendência hispânica, Miles é o segundo Homem-Aranha a aparecer em Ultimate Marvel, e com uma continuação no Universo Marvel principal</p>
@@ -101,7 +102,7 @@
 
             function personagem2() {
                 div_personagem.innerHTML = `
-                <img src="./img/personagens/gwen.png">
+                ${listaImagens[1]}
                 <div>
                     <h1>Spider-Gwen</h1>
                     <p>Gwen-Aranha, também conhecida como Spider-Gwen ou Spider-Woman, é uma personagem fictícia dos quadrinhos da Marvel Comics. Ela apareceu pela primeira vez em 2014, na série "Edge of Spider-Verse" #2. Gwen Stacy, originalmente conhecida como o interesse amoroso de Peter Parker no universo tradicional do Homem-Aranha, recebeu uma nova abordagem como uma versão alternativa do herói.</p>
@@ -111,7 +112,7 @@
 
             function personagem3() {
                 div_personagem.innerHTML = `
-                <img src="./img/personagens/peter.png">
+                ${listaImagens[2]}
                 <div>
                     <h1>Peter B. Parker</h1>
                     <p>Peter B. Parker é uma versão alternativa do Homem-Aranha que aparece no filme. Ele vem de uma dimensão diferente da de Miles Morales e é retratado como uma versão mais velha e desgastada do herói aracnídeo. É um Homem-Aranha mais experiente e desiludido, que passou por diversos desafios e dificuldades em sua vida. Ele se separou de sua esposa, Mary Jane, e sua vida pessoal e carreira de super-herói estão em um estado decadente.</p>
@@ -121,7 +122,7 @@
 
             function personagem4() {
                 div_personagem.innerHTML = `
-                <img src="./img/personagens/noir.png">
+                ${listaImagens[3]}
                 <div>
                     <h1>Homem-Aranha Noir</h1>
                     <p>Homem-Aranha Noir é uma versão alternativa do Homem-Aranha que se passa em uma realidade conhecida como Earth-90214, um ambiente sombrio. Essa versão do herói aracnídeo é conhecida por sua abordagem mais sombria e investigativa. Ao contrário da versão clássica do Homem-Aranha, o Homem-Aranha Noir não possui superpoderes aracnídeos. Em vez disso, ele usa sua inteligência, habilidades de luta e astúcia para combater o crime.</p>
@@ -131,7 +132,7 @@
 
             function personagem5() {
                 div_personagem.innerHTML = `
-                <img src="./img/personagens/porco.png">
+                ${listaImagens[4]}
                 <div>
                     <h1>Porco-Aranha</h1>
                     <p>Porco-Aranha é uma paródia do Homem-Aranha tradicional, misturando elementos de super-heróis com humor absurdo. Ele possui os poderes do Homem-Aranha, como agilidade, força aprimorada e a habilidade de se agarrar a superfícies. Além disso, ele tem uma personalidade divertida e é conhecido por suas piadas e trocadilhos.</p>
@@ -141,7 +142,7 @@
 
             function personagem6() {
                 div_personagem.innerHTML = `
-                <img src="./img/personagens/peni.png">
+                ${listaImagens[5]}
                 <div>
                     <h1>Peni Parker</h1>
                     <p>No filme, Peni Parker é uma jovem de origem japonesa que assume o manto do Homem-Aranha em sua versão robótica chamada SP//dr.

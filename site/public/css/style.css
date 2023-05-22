@@ -35,7 +35,7 @@ li, a{
 }
 
 .home{
-    background-image: url(./img/fundos/fundo-home2.jpg);
+    background-image: url(./../img/Fundos/fundo-home2.jpg);
     background-size: cover;
     display: flex;
     height: 100vh;
@@ -96,14 +96,14 @@ li, a{
 .img-sobre{
     width: 100%;
     height: 100%;
-    background-image: url(./img/uniforme/uniforme-semfundo.png);
+    background-image: url(./../img/uniforme/uniforme-semfundo.png);
     background-size: cover;
     background-repeat: no-repeat;
     transition: 0.5s;
 }
 
 .img-sobre:hover{
-    background-image: url(./img/uniforme/sense-semfundo.png);
+    background-image: url(./../img/uniforme/sense-semfundo.png);
 }
 
 #personagens{
@@ -178,7 +178,7 @@ li, a{
 
 #trilha-sonora{
     display: flex;
-    background-image: url(./img/fundos/fundo-home.jpg);
+    background-image: url(./../img/fundos/fundo-home.jpg);
     background-size: cover;
     background-repeat: no-repeat;
 }

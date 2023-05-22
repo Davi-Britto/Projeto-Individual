@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Oswald:wght@400;500;700&family=Raleway:wght@600;800&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Oswald', sans-serif;
+}
+
+
+.janela {
+    display: flex;
+    width: 100%;
+}
+
+.nav-lateral {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    height: 100vh;
+    width: 18%;
+    background-color: black;
+    padding: 15px;
+}
+
+.nav-lateral img {
+    width: 80px;
+    height: 100px;
+}
+
+.nav-lateral h1,
+h3 {
+    color: white;
+    text-align: center;
+    text-shadow: -2px -2px 4px #b80000, 2px -2px 4px #0309c4;
+}
+
+.itens-nav {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 200px;
+}
+
+.itens-nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
+.itens-nav .pag-atual {
+    text-align: center;
+    width: 100px;
+    padding: 5px;
+    border-bottom: 1px red solid;
+    border-radius: 15px;
+    transition: 0.5s;
+}
+
+.itens-nav .pag-atual:hover {
+    border-bottom: 1px white solid;
+    transition: 0.5s;
+}
+
+.sair {
+    margin-top: 30%;
+}
+
+.nav-lateral button {
+    padding: 10px;
+    width: 100px;
+    border: 2px red solid;
+    color: red;
+    background: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.5s;
+    font-size: 15px;
+}
+
+.nav-lateral button:hover {
+    font-weight: bold;
+    width: 150px;
+    transition: 0.5s;
+}
+
+.avaliar {
+    width: 80%;
+    position: relative;
+    top: 0;
+    left: 20%;
+    background-color: #101010;
+    height: 100vh;
+    overflow: auto;
+}
+
+.titulo-avaliacao {
+    border: 1px rgb(147, 147, 147) solid;
+    border-left: none;
+    border-right: none;
+    border-radius: 20px 20px 60px 60px;
+    margin: 15px;
+    text-shadow: -2px -2px 4px #b80000, 2px -2px 4px #0309c4;
+}
+
+.titulo-avaliacao h1 {
+    color: white;
+    font-size: 40px;
+    text-align: center;
+}
+
+.avaliacao {
+    display: flex;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.cartaz {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 5%;
+    width: 40%;
+}
+
+.cartaz img {
+    width: 370px;
+    height: 450px;
+}
+
+.texto-avaliacao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+}
+
+.texto-avaliacao span {
+    color: white;
+    font-size: 22px;
+}
+
+.texto-avaliacao textarea {
+    width: 100%;
+    border-image: linear-gradient(#1e1e1e, #510100) 30;
+    border-width: 4px;
+    border-style: solid;
+    border-radius: 10px;
+    background-color: #252424;
+    color: white;
+    font-size: 20px;
+    resize: none;
+    transition: 0.5s;
+    padding: 15px;
+}
+
+.texto-avaliacao textarea:hover {
+    border-radius: 5px;
+    transition: 0.5s;
+}
+
+.texto-avaliacao textarea:focus {
+    border-image: linear-gradient(#510100, #1e1e1e) 30;
+    border-width: 2px;
+    border-style: solid;
+    outline: none;
+}
+
+.estrelas-avaliacao {
+    display: flex;
+    margin: 15px;
+}
+
+.estrelas-avaliacao button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.5s
+}
+
+.estrelas-avaliacao button:hover {
+    background-color: #252424;
+    transition: 0.5s;
+}
+
+.estrelas-avaliacao button img {
+    width: 50px;
+    height: 50px;
+    border-color: aliceblue;
+}
+
+.btn-publicar {
+    padding: 10px;
+    width: 150px;
+    color: black;
+    background-color: white;
+    border: 2px white solid;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.5s;
+}
+
+.btn-publicar:hover {
+    background: none;
+    font-weight: bold;
+    color: white;
+    transition: 0.5s;
+}
+
+
+.div-results {
+    width: 100%;
+  }
+  
+  .div-results .feed-container {
+    background-color: #212124;
+    border-radius: 5px;
+    margin-bottom: 80px;
+  }
+  
+  .div-buttons {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .div-buttons > * {
+    margin-left: 30px;
+  }

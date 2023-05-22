@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/avaliacao.css">
+    <link rel="shortcut icon" href="favicon.ico">
+</head>
+
+<body onload="atualizarFeed()">
+    <div class="janela">
+        <div class="nav-lateral">
+            <img src="./../img/Logo-icone/logo-semfundo.png" alt="">
+            <h1>Avaliação</h1>
+
+            <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+
+            <div class="itens-nav">
+                <a href="./avaliacao.html" class="pag-atual">Avaliar</a>
+                <a href="./avaliacao-geral.html">Ver Avaliações</a>
+            </div>
+
+            <a href="./../login.html" class="sair"><button>Sair</button></a>
+        </div>
+
+        <div class="avaliar">
+            <div class="titulo-avaliacao">
+                <h1>Avaliar</h1>
+                <h3>Avalie o filme: <br> Homem Aranha no Aranhaverso
+                </h3>
+            </div>
+
+            <div class="avaliacao">
+                <div class="cartaz">
+                    <img src="./../img/Logo-icone/cartaz.jpg">
+                </div>
+    
+                <form class="texto-avaliacao" method="post" onsubmit="return publicar()">
+                    <span>Digite sua crítica:</span> <br>
+                    <textarea id="textarea_avaliacao" cols="30" rows="10"></textarea>
+
+                    <div id="div_estrelas" class="estrelas-avaliacao">
+                        <button onclick="umaEstrela()"><img src="./../img/Logo-icone/estrela-vazia.png"></button>
+                        <button onclick="duasEstrela()"><img src="./../img/Logo-icone/estrela-vazia.png"></button>
+                        <button onclick="tresEstrela()"><img src="./../img/Logo-icone/estrela-vazia.png"></button>
+                        <button onclick="quatroEstrela()"><img src="./../img/Logo-icone/estrela-vazia.png"></button>
+                        <button onclick="cincoEstrela()"><img src="./../img/Logo-icone/estrela-vazia.png"></button>
+                    </div>
+
+                    <button class="btn-publicar">Publicar</button>
+                </form>
+            </div>
+
+            <div class="div-results">
+                <div id="feed_container" class="feed-container">
+
+               </div>
+            </div>
+
+        </div>
+    </div>
+    
+</body>
+
+</html>
+
+<script>
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+    var estrelas;
+
+    function umaEstrela(){
+        div_estrelas.innerHTML = `
+            <button onclick="umaEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
+            <button onclick="duasEstrela()"><img src="./../img/Logo-icone/estrela-vazia.png"></button>
+            <button onclick="tresEstrela()"><img src="./../img/Logo-icone/estrela-vazia.png"></button>
+            <button onclick="quatroEstrela()"><img src="./../img/Logo-icone/estrela-vazia.png"></button>
+            <button onclick="cincoEstrela()"><img src="./../img/Logo-icone/estrela-vazia.png"></button>
+        `;
+
+        estrelas = 1;
+    }
+
+    function duasEstrela(){
+        div_estrelas.innerHTML = `
+            <button onclick="umaEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
+            <button onclick="duasEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
+            <button onclick="tresEstrela()"><img src="./../img/Logo-icone/estrela-vazia.png"></button>
+            <button onclick="quatroEstrela()"><img src="./../img/Logo-icone/estrela-vazia.png"></button>
+            <button onclick="cincoEstrela()"><img src="./../img/Logo-icone/estrela-vazia.png"></button>
+        `;
+
+        estrelas = 2;
+    }
+
+    function tresEstrela(){
+        div_estrelas.innerHTML = `
+            <button onclick="umaEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
+            <button onclick="duasEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
+            <button onclick="tresEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
+            <button onclick="quatroEstrela()"><img src="./../img/Logo-icone/estrela-vazia.png"></button>
+            <button onclick="cincoEstrela()"><img src="./../img/Logo-icone/estrela-vazia.png"></button>
+        `;
+
+        estrelas = 3;
+    }
+
+    function quatroEstrela(){
+        div_estrelas.innerHTML = `
+            <button onclick="umaEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
+            <button onclick="duasEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
+            <button onclick="tresEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
+            <button onclick="quatroEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
+            <button onclick="cincoEstrela()"><img src="./../img/Logo-icone/estrela-vazia.png"></button>
+        `;
+
+        estrelas = 4;
+    }
+
+    function cincoEstrela(){
+        div_estrelas.innerHTML = `
+            <button onclick="umaEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
+            <button onclick="duasEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
+            <button onclick="tresEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
+            <button onclick="quatroEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
+            <button onclick="cincoEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
+        `;
+
+        estrelas = 5;
+    }
+
+    function publicar() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        var avaliacao = {
+            descricao: textarea_avaliacao.value,
+            qtdEstrelas: estrelas
+        }
+
+        fetch(`/avisos/publicar/${idUsuario}`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(avaliacao)
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
+                window.location = "/avaliacao/avaliacao.html";
+                // limparFormulario();
+                // finalizarAguardar();
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else if(resposta.status == 400){
+                // alert("Campo vazio");
+                alert("Você só pode fazer apenas uma avaliação");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            // finalizarAguardar();
+        });
+
+        return false;
+
+    }
+
+    function atualizarFeed() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+        //aguardar();
+        fetch(`/avisos/listar/${idUsuario}`).then(function (resposta) {
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    var feed = document.getElementById("feed_container");
+                    var mensagem = document.createElement("span");
+                    mensagem.innerHTML = "Nenhum resultado encontrado."
+                    feed.appendChild(mensagem);
+                    throw "Nenhum resultado encontrado!!";
+                }
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    var feed = document.getElementById("feed_container");
+                    feed.innerHTML = "";
+                    for (let i = 0; i < resposta.length; i++) {
+                        var publicacao = resposta[i];
+
+                        // criando e manipulando elementos do HTML via JavaScript
+                        var divPublicacao = document.createElement("div");
+                        var spanID = document.createElement("span");
+                        var spanNome = document.createElement("span");
+                        var spanDescricao = document.createElement("span");
+                        var spanEstrela = document.createElement("span");
+                        var divButtons = document.createElement("div");
+                        var btnEditar = document.createElement("button");
+                        var btnDeletar = document.createElement("button");
+
+
+                        spanID.innerHTML = "ID: <b>" + publicacao.fkUsuario + "</b>";
+                        spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
+                        spanDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
+                        spanEstrela.innerHTML = "Estrela: <b>" + publicacao.fkEstrela + "</b>";
+                        btnEditar.innerHTML = "Editar";
+                        btnDeletar.innerHTML = "Deletar";
+
+                        divPublicacao.className = "publicacao";
+                        spanID.className = "inputNumero";
+                        spanNome.className = "publicacao-nome";
+                        spanDescricao.className = "publicacao-descricao";
+                        spanEstrela.className = "publicacao-estrela";
+
+                        divButtons.className = "div-buttons"
+
+                        btnEditar.className = "publicacao-btn-editar"
+                        btnEditar.id = "btnEditar" + publicacao.idAvaliacao;
+                        btnEditar.setAttribute("onclick", `editar(${publicacao.idAvaliacao})`);
+
+                        btnDeletar.className = "publicacao-btn-editar"
+                        btnDeletar.id = "btnDeletar" + publicacao.idAvaliacao;
+                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAvaliacao})`);
+
+                        divPublicacao.appendChild(spanID);
+                        divPublicacao.appendChild(spanNome);
+                        divPublicacao.appendChild(spanDescricao);
+                        divPublicacao.appendChild(spanEstrela);
+                        divPublicacao.appendChild(divButtons);
+                        divButtons.appendChild(btnEditar);
+                        divButtons.appendChild(btnDeletar);
+                        feed.appendChild(divPublicacao);
+                    }
+
+                    finalizarAguardar();
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            finalizarAguardar();
+        });
+    }
+
+</script>
