@@ -21,6 +21,7 @@
             <div class="itens-nav">
                 <a href="./avaliacao.html" class="pag-atual">Avaliar</a>
                 <a href="./avaliacao-geral.html">Ver Avaliações</a>
+                <a href="./dashboard.html">Dashboard</a>
             </div>
 
             <a href="./../login.html" class="sair"><button>Sair</button></a>
@@ -158,8 +159,7 @@
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else if(resposta.status == 400){
-                // alert("Campo vazio");
-                alert("Você só pode fazer apenas uma avaliação");
+                alert("Campos vazios ou você já fez uma avaliação");
             } else {
                 throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
             }
@@ -212,7 +212,7 @@
                         btnDeletar.innerHTML = "Deletar";
 
                         divPublicacao.className = "publicacao";
-                        spanID.className = "inputNumero";
+                        spanID.className = "publicacao-id";
                         spanNome.className = "publicacao-nome";
                         spanDescricao.className = "publicacao-descricao";
                         spanEstrela.className = "publicacao-estrela";
@@ -223,7 +223,7 @@
                         btnEditar.id = "btnEditar" + publicacao.idAvaliacao;
                         btnEditar.setAttribute("onclick", `editar(${publicacao.idAvaliacao})`);
 
-                        btnDeletar.className = "publicacao-btn-editar"
+                        btnDeletar.className = "publicacao-btn-deletar"
                         btnDeletar.id = "btnDeletar" + publicacao.idAvaliacao;
                         btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAvaliacao})`);
 
@@ -245,6 +245,36 @@
         }).catch(function (resposta) {
             console.error(resposta);
             finalizarAguardar();
+        });
+    }
+
+    function editar(idAvaliacao) {
+        sessionStorage.ID_AVALIACAO_EDITANDO = idAvaliacao;
+        console.log("cliquei em editar - " + idAvaliacao);
+        window.alert("Você será redirecionado à página de edição da avaliação de id número: " + idAvaliacao);
+        window.location = "/avaliacao/edicao-avaliacao.html"
+
+    }
+
+    function deletar(idAvaliacao) {
+        console.log("Criar função de apagar avaliação escolhido - ID" + idAvaliacao);
+        fetch(`/avisos/deletar/${idAvaliacao}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+                window.location = "/avaliacao/avaliacao.html"
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
         });
     }
 

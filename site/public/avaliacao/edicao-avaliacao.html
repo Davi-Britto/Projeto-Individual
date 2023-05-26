@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/edicao-avaliacao.css">
+    <link rel="shortcut icon" href="favicon.ico">
+</head>
+
+<body>
+    <div class="janela">
+        <div class="nav-lateral">
+            <img src="./../img/Logo-icone/logo-semfundo.png" alt="">
+            <h1>Avaliação</h1>
+
+            <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+
+            <div class="itens-nav">
+                <a href="./avaliacao.html" class="pag-atual">Avaliar</a>
+                <a href="./avaliacao-geral.html">Ver Avaliações</a>
+                <a href="./dashboard.html">Dashboard</a>
+            </div>
+
+            <a href="./../login.html" class="sair"><button>Sair</button></a>
+        </div>
+
+        <div class="avaliar">
+            <div class="titulo-avaliacao">
+                <h1>Editar avaliação</h1>
+            </div>
+
+            <div class="avaliacao">
+    
+                <div class="texto-avaliacao">
+                    <span>Edite sua crítica:</span> <br>
+                    <textarea id="textarea_avaliacao" cols="30" rows="10"></textarea>
+
+                    <div id="div_estrelas" class="estrelas-avaliacao">
+                        <button onclick="umaEstrela()"><img src="./../img/Logo-icone/estrela-vazia.png"></button>
+                        <button onclick="duasEstrela()"><img src="./../img/Logo-icone/estrela-vazia.png"></button>
+                        <button onclick="tresEstrela()"><img src="./../img/Logo-icone/estrela-vazia.png"></button>
+                        <button onclick="quatroEstrela()"><img src="./../img/Logo-icone/estrela-vazia.png"></button>
+                        <button onclick="cincoEstrela()"><img src="./../img/Logo-icone/estrela-vazia.png"></button>
+                    </div>
+
+                    <button onclick="editar()" class="btn-publicar">Editar</button>
+                </div>
+            </div>
+
+            <div class="div-results">
+                <div id="feed_container" class="feed-container">
+
+               </div>
+            </div>
+
+        </div>
+    </div>
+    
+</body>
+
+</html>
+
+<script>
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+    var estrelas;
+
+    function umaEstrela(){
+        div_estrelas.innerHTML = `
+            <button onclick="umaEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
+            <button onclick="duasEstrela()"><img src="./../img/Logo-icone/estrela-vazia.png"></button>
+            <button onclick="tresEstrela()"><img src="./../img/Logo-icone/estrela-vazia.png"></button>
+            <button onclick="quatroEstrela()"><img src="./../img/Logo-icone/estrela-vazia.png"></button>
+            <button onclick="cincoEstrela()"><img src="./../img/Logo-icone/estrela-vazia.png"></button>
+        `;
+
+        estrelas = 1;
+    }
+
+    function duasEstrela(){
+        div_estrelas.innerHTML = `
+            <button onclick="umaEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
+            <button onclick="duasEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
+            <button onclick="tresEstrela()"><img src="./../img/Logo-icone/estrela-vazia.png"></button>
+            <button onclick="quatroEstrela()"><img src="./../img/Logo-icone/estrela-vazia.png"></button>
+            <button onclick="cincoEstrela()"><img src="./../img/Logo-icone/estrela-vazia.png"></button>
+        `;
+
+        estrelas = 2;
+    }
+
+    function tresEstrela(){
+        div_estrelas.innerHTML = `
+            <button onclick="umaEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
+            <button onclick="duasEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
+            <button onclick="tresEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
+            <button onclick="quatroEstrela()"><img src="./../img/Logo-icone/estrela-vazia.png"></button>
+            <button onclick="cincoEstrela()"><img src="./../img/Logo-icone/estrela-vazia.png"></button>
+        `;
+
+        estrelas = 3;
+    }
+
+    function quatroEstrela(){
+        div_estrelas.innerHTML = `
+            <button onclick="umaEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
+            <button onclick="duasEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
+            <button onclick="tresEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
+            <button onclick="quatroEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
+            <button onclick="cincoEstrela()"><img src="./../img/Logo-icone/estrela-vazia.png"></button>
+        `;
+
+        estrelas = 4;
+    }
+
+    function cincoEstrela(){
+        div_estrelas.innerHTML = `
+            <button onclick="umaEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
+            <button onclick="duasEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
+            <button onclick="tresEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
+            <button onclick="quatroEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
+            <button onclick="cincoEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
+        `;
+
+        estrelas = 5;
+    }
+
+    function editar() {
+        fetch(`/avisos/editar/${sessionStorage.getItem("ID_AVALIACAO_EDITANDO")}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                descricao: textarea_avaliacao.value,
+                qtdEstrelas: estrelas
+            })
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                window.alert("Post atualizado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+                window.location = "/avaliacao/avaliacao.html"
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    
+
+</script>

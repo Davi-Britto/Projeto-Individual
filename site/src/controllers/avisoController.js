@@ -73,12 +73,13 @@ function publicar(req, res) {
 
     if (idUsuario == undefined) {
         res.status(400).send("O id do usuário está indefinido!");
+    } else if (descricao == undefined) {
+        res.status(400).send("A descrição está vazia!");
+    } else if(descricao == ""){
+        res.status(400).send("A descrição está indefinido!");
     } else if (qtdEstrelas == undefined) {
         res.status(400).send("A quantidade de estrelas está indefinido!");
-    } else if (descricao == undefined) {
-        res.status(403).send("A descrição está indefinido!");
-    }
-    else {
+    } else {
         avisoModel.listarPorUsuario(idUsuario).then((resultado) => {
             if (resultado.length > 0) {
                 res.status(400).send("O usuário já fez uma avaliação"); //mexer
@@ -104,9 +105,10 @@ function publicar(req, res) {
 
 function editar(req, res) {
     var novaDescricao = req.body.descricao;
-    var idAviso = req.params.idAviso;
+    var novaEstrela = req.body.qtdEstrelas;
+    var idAvaliacao = req.params.idAvaliacao;
 
-    avisoModel.editar(novaDescricao, idAviso)
+    avisoModel.editar(novaDescricao, novaEstrela, idAvaliacao)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -123,9 +125,9 @@ function editar(req, res) {
 }
 
 function deletar(req, res) {
-    var idAviso = req.params.idAviso;
+    var idAvaliacao = req.params.idAvaliacao;
 
-    avisoModel.deletar(idAviso)
+    avisoModel.deletar(idAvaliacao)
         .then(
             function (resultado) {
                 res.json(resultado);

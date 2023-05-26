@@ -113,23 +113,10 @@ h3 {
 
 .avaliacao {
     display: flex;
+    justify-content: center;
     margin-top: 5%;
     margin-bottom: 5%;
-    justify-content: space-between;
-    width: 90%;
-}
-
-.cartaz {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin-left: 5%;
-    width: 40%;
-}
-
-.cartaz img {
-    width: 370px;
-    height: 450px;
+    width: 100%;
 }
 
 .texto-avaliacao {
@@ -236,7 +223,6 @@ h3 {
 .publicacao-id, .publicacao-nome, .publicacao-descricao, .publicacao-estrela{
     color: white;
     font-size: 20px;
-    word-wrap: break-word;
 }
 
 .div-buttons {

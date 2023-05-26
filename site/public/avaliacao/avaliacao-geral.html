@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="favicon.ico">
 </head>
 
-<body>
+<body onload="atualizarFeed()">
     <div class="janela">
         <div class="nav-lateral">
             <img src="./../img/Logo-icone/logo-semfundo.png" alt="">
@@ -21,6 +21,7 @@
             <div class="itens-nav">
                 <a href="./avaliacao.html">Avaliar</a>
                 <a href="./avaliacao-geral.html" class="pag-atual">Ver Avaliações</a>
+                <a href="./dashboard.html">Dashboard</a>
             </div>
 
             <a href="./../login.html" class="sair"><button>Sair</button></a>
@@ -33,23 +34,24 @@
                 </h3>
             </div>
 
-            <div>
-                <table>
-                    <tr>
-                        <th>Id</th>
-                        <th>Usuário</th>
-                        <th>Descrição</th>
-                        <th>Estrelas</th>
-                    </tr>
-
-                    <tr>
-                        
-                    </tr>
-                </table>
-            </div>
-
             <div class="avaliacao-publicada">
-                <div id="feed_container" class="feed-container">
+                <div class="feed-container">
+
+                    <table class="table-titulo" >
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Descrição</th>
+                            <th>Estrela</th>
+                        </tr>
+                    </table>
+
+                    <table class="table-avaliacao" id="feed_container">
+                        <!-- Conteúdo que será criado automaticamente com o atualizarFeed() -->
+                    </table>
+
+                        
+                    
                 </div>
             </div>
 
@@ -63,5 +65,64 @@
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
+    function atualizarFeed() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+        //aguardar();
+        fetch(`/avisos/listar`).then(function (resposta) {
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    var feed = document.getElementById("feed_container");
+                    var mensagem = document.createElement("span");
+                    mensagem.innerHTML = "Nenhum resultado encontrado."
+                    feed.appendChild(mensagem);
+                    throw "Nenhum resultado encontrado!!";
+                }
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    var feed = document.getElementById("feed_container");
+                    feed.innerHTML = "";
+                    for (let i = 0; i < resposta.length; i++) {
+                        var publicacao = resposta[i];
+
+                        // criando e manipulando elementos do HTML via JavaScript
+                        var linha = document.createElement("tr");
+                        var spanID = document.createElement("td");
+                        var spanNome = document.createElement("td");
+                        var spanDescricao = document.createElement("td");
+                        var spanEstrela = document.createElement("td");
+
+                        spanID.innerHTML = publicacao.fkUsuario;
+                        spanNome.innerHTML = publicacao.nome;
+                        spanDescricao.innerHTML = publicacao.descricao;
+                        spanEstrela.innerHTML = publicacao.fkEstrela;
+
+                        
+                        linha.className = "linha";
+                        spanID.className = "publicacao-id";
+                        spanNome.className = "publicacao-nome";
+                        spanDescricao.className = "publicacao-descricao";
+                        spanEstrela.className = "publicacao-fkEstrela";
+                        
+                        linha.appendChild(spanID);
+                        linha.appendChild(spanNome);
+                        linha.appendChild(spanDescricao);
+                        linha.appendChild(spanEstrela);
+
+                        feed.appendChild(linha);
+                        
+                    }
+
+                    finalizarAguardar();
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            finalizarAguardar();
+        });
+    }
     
 </script>

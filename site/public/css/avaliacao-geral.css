@@ -110,3 +110,36 @@ h3 {
     font-size: 40px;
     text-align: center;
 }
+
+.feed-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+.table-titulo{
+    width: 80%;
+    border: 1px white solid;
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+}
+
+.table-avaliacao{
+    width: 80%;
+    text-align: center;
+    color: white;
+}
+
+.publicacao-id{
+    width: 10%;
+}
+
+.publicacao-nome{
+    width: 22%;
+}
+
+.publicacao-descricao{
+    width: 40%;
+}
