@@ -8,6 +8,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="../css/edicao-avaliacao.css">
     <link rel="shortcut icon" href="favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -19,6 +20,7 @@
             <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
 
             <div class="itens-nav">
+                <a href="./personagem.html">Personagens</a>
                 <a href="./avaliacao.html" class="pag-atual">Avaliar</a>
                 <a href="./avaliacao-geral.html">Ver Avaliações</a>
                 <a href="./dashboard.html">Dashboard</a>
@@ -141,8 +143,13 @@
         }).then(function (resposta) {
 
             if (resposta.ok) {
-                window.alert("Post atualizado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "/avaliacao/avaliacao.html"
+                Swal.fire({
+                    icon: 'success',
+                    title: 'POST',
+                    text: `Post atualizado com sucesso pelo usuario de email: ${sessionStorage.getItem("EMAIL_USUARIO")}!`
+                }).then(() => {
+                    window.location = "/avaliacao/avaliacao.html";
+                })
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {

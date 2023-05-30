@@ -7,11 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="./css/login.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
     <div class="container">
-        
+
         <div class="login">
 
             <button><a href="index.html"><img src="./img/logo-icone/seta.png" alt=""></a></button>
@@ -20,11 +21,11 @@
 
             <div class="campos">
                 <div class="email">
-                    <span>Email:</span> 
+                    <span>Email:</span>
                     <input id="email_input">
                 </div>
                 <div class="senha">
-                    <span>Senha:</span> 
+                    <span>Senha:</span>
                     <input id="senha_input"> <br>
                 </div>
 
@@ -52,61 +53,72 @@
         var senhaVar = senha_input.value;
 
         if (emailVar == "" || senhaVar == "") {
-            alert("Mensagem de erro para todos os campos em branco");
+            Swal.fire({
+                icon: 'error',
+                title: 'ERRO',
+                text: 'Mensagem de erro para todos os campos em branco'
+            })
             finalizarAguardar();
             return false;
         }
         else {
             setInterval('', 5000)
-        }
 
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
+            console.log("FORM LOGIN: ", emailVar);
+            console.log("FORM SENHA: ", senhaVar);
 
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar
+            fetch("/usuarios/autenticar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    emailServer: emailVar,
+                    senhaServer: senhaVar
+                })
+            }).then(function (resposta) {
+                console.log("ESTOU NO THEN DO entrar()!")
+
+                if (resposta.ok) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'LOGIN',
+                        text: 'Login realizado com sucesso!'
+                    }).then(() => {
+                        window.location = "./avaliacao/personagem.html";
+                    })
+
+                    console.log(resposta);
+
+                    resposta.json().then(json => {
+                        console.log(json);
+                        console.log(JSON.stringify(json));
+
+                        sessionStorage.EMAIL_USUARIO = json.email;
+                        sessionStorage.NOME_USUARIO = json.nome;
+                        sessionStorage.ID_USUARIO = json.id;
+
+                    });
+
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'ERRO',
+                        text: 'Houve um erro ao tentar realizar o login!'
+                    })
+
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                        finalizarAguardar(texto);
+                    });
+                }
+
+            }).catch(function (erro) {
+                console.log(erro);
             })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
 
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
-
-                    setTimeout(function () {
-                        window.location = "./avaliacao/avaliacao.html";
-                    }, 1000); // apenas para exibir o loading
-
-                });
-
-            } else {
-
-                alert("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                    finalizarAguardar(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-        return false;
+            return false;
+        }
     }
 
 </script>

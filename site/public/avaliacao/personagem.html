@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/personagem.css">
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body onload="atualizarFeed()">
+    <div class="janela">
+        <div class="nav-lateral">
+            <div id="iconeUsuario">
+                <img src="./../img/Logo-icone/logo-semfundo.png">
+            </div>
+            <h1>Avaliação</h1>
+
+            <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+
+            <div class="itens-nav">
+                <a href="./personagem.html" class="pag-atual">Personagens</a>
+                <a href="./avaliacao.html">Avaliar</a>
+                <a href="./avaliacao-geral.html">Ver Avaliações</a>
+                <a href="./dashboard.html">Dashboard</a>
+            </div>
+
+            <a href="./../login.html" class="sair"><button>Sair</button></a>
+        </div>
+
+        <div class="personagem-favorito">
+            <div class="titulo-personagem">
+                <h1>Personagens</h1>
+            </div>
+
+            <div class="subtitulo">
+                <h1>Escolha seu personagem favorito</h1>
+            </div>
+
+            <div class="personagens">
+
+                <div class="imagem-personagem">
+                    <div class="curtir-personagem">
+
+                        <div id="imagem1">
+                        </div>
+
+
+                        <div id="imagem2">
+                        </div>
+
+                        <div id="imagem3">
+                        </div>
+                    </div>
+
+
+                    <div class="curtir-personagem">
+
+                        <div id="imagem4">
+                        </div>
+
+                        <div id="imagem5">
+                        </div>
+
+                        <div id="imagem6">
+                        </div>
+                    </div>
+
+                    <div class="btn-personagem">
+                        <button onclick="cadastrarPersonagem()">Enviar</button>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="div-results">
+                <div id="feed_container" class="feed-container">
+    
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+    var personagemFavorito = 0;
+
+    var imagensPersonagens = ['<img src="./../img/Personagens/miles.png" class="imagem">', '<img src="./../img/Personagens/gwen.png" class="imagem">', '<img src="./../img/Personagens/peter.png" class="imagem">', '<img src="./../img/Personagens/noir.png" class="imagem">', '<img src="./../img/Personagens/porco.png" class="imagem">', '<img src="./../img/Personagens/peni.png" class="imagem">'];
+
+    for (var i = 0; i < imagensPersonagens.length; i++) {
+        if (i == 0) {
+            imagem1.innerHTML = `
+                ${imagensPersonagens[i]}
+                <div id="curtida1">
+                    <button onclick="personagem1()">
+                    <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+                    </button>
+                </div>
+                
+            `
+        } else if (i == 1) {
+            imagem2.innerHTML = `
+                ${imagensPersonagens[i]}
+                <div id="curtida2">
+                    <button onclick="personagem2()">
+                        <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+                    </button>
+                </div>
+            `
+        } else if (i == 2) {
+            imagem3.innerHTML = `
+                ${imagensPersonagens[i]}
+                <div id="curtida3">
+                    <button onclick="personagem3()">
+                        <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+                    </button>
+                </div>
+            `
+        } else if (i == 3) {
+            imagem4.innerHTML = `
+                ${imagensPersonagens[i]}
+                <div id="curtida4">
+                    <button onclick="personagem4()">
+                        <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+                    </button>
+                </div>
+            `
+        } else if (i == 4) {
+            imagem5.innerHTML = `
+                ${imagensPersonagens[i]}
+                <div id="curtida5">
+                    <button onclick="personagem5()">
+                        <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+                    </button>
+                </div>
+            `
+        } else if (i == 5) {
+            imagem6.innerHTML = `
+                ${imagensPersonagens[i]}
+                <div id="curtida6">
+                    <button onclick="personagem6()">
+                        <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+                    </button>
+                </div>
+            `
+        }
+    }
+
+    function personagem1() {
+        curtida1.innerHTML = `
+            <button onclick="personagem1()">
+                <img src="./../img/Logo-icone/curtida-cheia.png" class="icone-curtida">
+            </button>
+        `;
+
+        curtida2.innerHTML = `
+            <button onclick="personagem2()">
+                <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+            </button>
+        `;
+
+        curtida3.innerHTML = `
+            <button onclick="personagem3()">
+                <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+            </button>
+        `;
+
+        curtida4.innerHTML = `
+            <button onclick="personagem4()">
+                <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+            </button>
+        `;
+
+        curtida5.innerHTML = `
+            <button onclick="personagem5()">
+                <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+            </button>
+        `;
+
+        curtida6.innerHTML = `
+            <button onclick="personagem6()">
+                <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+            </button>
+        `;
+
+        personagemFavorito = 1;
+    }
+
+    function personagem2() {
+        curtida1.innerHTML = `
+            <button onclick="personagem1()">
+                <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+            </button>
+        `;
+
+        curtida2.innerHTML = `
+            <button onclick="personagem2()">
+                <img src="./../img/Logo-icone/curtida-cheia.png" class="icone-curtida">
+            </button>
+        `;
+
+        curtida3.innerHTML = `
+            <button onclick="personagem3()">
+                <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+            </button>
+        `;
+
+        curtida4.innerHTML = `
+            <button onclick="personagem4()">
+                <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+            </button>
+        `;
+
+        curtida5.innerHTML = `
+            <button onclick="personagem5()">
+                <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+            </button>
+        `;
+
+        curtida6.innerHTML = `
+            <button onclick="personagem6()">
+                <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+            </button>
+        `;
+
+        personagemFavorito = 2;
+    }
+
+    function personagem3() {
+        curtida1.innerHTML = `
+            <button onclick="personagem1()">
+                <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+            </button>
+        `;
+
+        curtida2.innerHTML = `
+            <button onclick="personagem2()">
+                <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+            </button>
+        `;
+
+        curtida3.innerHTML = `
+            <button onclick="personagem3()">
+                <img src="./../img/Logo-icone/curtida-cheia.png" class="icone-curtida">
+            </button>
+        `;
+
+        curtida4.innerHTML = `
+            <button onclick="personagem4()">
+                <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+            </button>
+        `;
+
+        curtida5.innerHTML = `
+            <button onclick="personagem5()">
+                <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+            </button>
+        `;
+
+        curtida6.innerHTML = `
+            <button onclick="personagem6()">
+                <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+            </button>
+        `;
+
+        personagemFavorito = 3;
+    }
+
+    function personagem4() {
+        curtida1.innerHTML = `
+            <button onclick="personagem1()">
+                <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+            </button>
+        `;
+
+        curtida2.innerHTML = `
+            <button onclick="personagem2()">
+                <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+            </button>
+        `;
+
+        curtida3.innerHTML = `
+            <button onclick="personagem3()">
+                <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+            </button>
+        `;
+
+        curtida4.innerHTML = `
+            <button onclick="personagem4()">
+                <img src="./../img/Logo-icone/curtida-cheia.png" class="icone-curtida">
+            </button>
+        `;
+
+        curtida5.innerHTML = `
+            <button onclick="personagem5()">
+                <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+            </button>
+        `;
+
+        curtida6.innerHTML = `
+            <button onclick="personagem6()">
+                <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+            </button>
+        `;
+
+        personagemFavorito = 4;
+    }
+
+    function personagem5() {
+        curtida1.innerHTML = `
+            <button onclick="personagem1()">
+                <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+            </button>
+        `;
+
+        curtida2.innerHTML = `
+            <button onclick="personagem2()">
+                <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+            </button>
+        `;
+
+        curtida3.innerHTML = `
+            <button onclick="personagem3()">
+                <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+            </button>
+        `;
+
+        curtida4.innerHTML = `
+            <button onclick="personagem4()">
+                <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+            </button>
+        `;
+
+        curtida5.innerHTML = `
+            <button onclick="personagem5()">
+                <img src="./../img/Logo-icone/curtida-cheia.png" class="icone-curtida">
+            </button>
+        `;
+
+        curtida6.innerHTML = `
+            <button onclick="personagem6()">
+                <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+            </button>
+        `;
+
+        personagemFavorito = 5;
+    }
+
+    function personagem6() {
+        curtida1.innerHTML = `
+            <button onclick="personagem1()">
+                <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+            </button>
+        `;
+
+        curtida2.innerHTML = `
+            <button onclick="personagem2()">
+                <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+            </button>
+        `;
+
+        curtida3.innerHTML = `
+            <button onclick="personagem3()">
+                <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+            </button>
+        `;
+
+        curtida4.innerHTML = `
+            <button onclick="personagem4()">
+                <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+            </button>
+        `;
+
+        curtida5.innerHTML = `
+            <button onclick="personagem5()">
+                <img src="./../img/Logo-icone/curtida-vazia.png" class="icone-curtida">
+            </button>
+        `;
+
+        curtida6.innerHTML = `
+            <button onclick="personagem6()">
+                <img src="./../img/Logo-icone/curtida-cheia.png" class="icone-curtida">
+            </button>
+        `;
+
+        personagemFavorito = 6;
+    }
+
+    function cadastrarPersonagem() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        var personagem = {
+            personagemEscolhido: personagemFavorito
+        };
+
+        fetch(`/avisos/cadastrarPersonagem/${idUsuario}`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(personagem)
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Personagem Favorito',
+                    text: `Personagem favorito escolhido com sucesso pelo usuario de ID: ${idUsuario}!`
+                }).then(() => {
+                    window.location = "/avaliacao/personagem.html";
+                })
+                // limparFormulario();
+                // finalizarAguardar();
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else if (resposta.status == 400) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'ERRO',
+                    text: 'Você não escolheu um personagem favorito, por favor, escolha um personagem'
+                })
+            } else {
+                throw ("Houve um erro ao tentar escolher um personagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            // finalizarAguardar();
+        });
+
+        return false;
+    }
+
+    function atualizarFeed() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+        //aguardar();
+        fetch(`/avisos/listarPersonagem/${idUsuario}`).then(function (resposta) {
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    var feed = document.getElementById("feed_container");
+                    var mensagem = document.createElement("span");
+                    mensagem.innerHTML = "Nenhum resultado encontrado."
+                    feed.appendChild(mensagem);
+                    throw "Nenhum resultado encontrado!!";
+                }
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    var feed = document.getElementById("feed_container");
+                    feed.innerHTML = "";
+                    for (let i = 0; i < resposta.length; i++) {
+                        var publicacao = resposta[i];
+
+                        // criando e manipulando elementos do HTML via JavaScript
+                        var divPublicacao = document.createElement("div");
+                        var spanID = document.createElement("span");
+                        var spanNomeUsuario = document.createElement("span");
+                        var spanNomePersonagem = document.createElement("span");
+                        var imagemPersonagem = document.createElement("span");
+
+                        spanID.innerHTML = "ID: <b>" + publicacao.id + "</b>";
+                        spanNomeUsuario.innerHTML = "Nome: <b>" + publicacao.nome + "</b>";
+                        spanNomePersonagem.innerHTML = "Personagem Escolhido: <b>" + publicacao.NomePersonagem + "</b>";
+
+                        if (publicacao.fkPersonagem == 1) {
+                            imagemPersonagem.innerHTML = '<img src="./../img/Personagens/miles-icone.jpg">';
+                        } else if(publicacao.fkPersonagem == 2){
+                            imagemPersonagem.innerHTML = `<img src="./../img/Personagens/gwen-icone.jpg">`;
+                        } else if(publicacao.fkPersonagem == 3){
+                            imagemPersonagem.innerHTML = `<img src="./../img/Personagens/peter-icone.jpg">`;
+                        } else if(publicacao.fkPersonagem == 4){
+                            imagemPersonagem.innerHTML = `<img src="./../img/Personagens/noir-icone.jpg">`;
+                        } else if(publicacao.fkPersonagem == 5){
+                            imagemPersonagem.innerHTML = `<img src="./../img/Personagens/porco-icone.jpg">`;
+                        } else if(publicacao.fkPersonagem == 6){
+                            imagemPersonagem.innerHTML = `<img src="./../img/Personagens/peni-icone.jpg">`;
+                        }
+
+                        divPublicacao.className = "publicacao";
+                        spanID.className = "publicacao-id";
+                        spanNomeUsuario.className = "publicacao-nomeUsuario"
+                        spanNomePersonagem.className = "publicacao-nomePersonagem";
+                        imagemPersonagem.className = "publicacao-imagem";
+
+                        divPublicacao.appendChild(spanID);
+                        divPublicacao.appendChild(spanNomeUsuario);
+                        divPublicacao.appendChild(spanNomePersonagem);
+                        divPublicacao.appendChild(imagemPersonagem);
+                        feed.appendChild(divPublicacao);
+                    }
+
+                    finalizarAguardar();
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            finalizarAguardar();
+        });
+    }
+
+
+</script>

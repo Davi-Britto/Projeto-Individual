@@ -7,11 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
     <link rel="stylesheet" href="./css/login.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
     <div class="container">
-        
+
         <div class="login">
 
             <button><a href="index.html"><img src="./img/logo-icone/seta.png" alt=""></a></button>
@@ -20,22 +21,22 @@
 
             <div class="campos">
                 <div class="nome">
-                    <span>Nome:</span> 
+                    <span>Nome:</span>
                     <input id="nome_input">
                 </div>
 
                 <div class="email">
-                    <span>Email:</span> 
+                    <span>Email:</span>
                     <input id="email_input">
                 </div>
 
                 <div class="senha">
-                    <span>Senha:</span> 
+                    <span>Senha:</span>
                     <input id="senha_input"> <br>
                 </div>
 
                 <div class="confirmar-senha">
-                    <span>Confirmar Senha:</span> 
+                    <span>Confirmar Senha:</span>
                     <input id="confirmacao_senha_input"> <br>
                 </div>
 
@@ -64,50 +65,61 @@
         var senhaVar = senha_input.value;
         var confirmacaoSenhaVar = confirmacao_senha_input.value;
 
-        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
-            alert("Mensagem de erro para todos os campos em branco");
-
+        if ((nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "")) {
+            Swal.fire({
+                icon: 'error',
+                title: 'ERRO',
+                text: 'Mensagem de erro para todos os campos em branco'
+            })
             finalizarAguardar();
             return false;
+        } else if (senhaVar != confirmacaoSenhaVar) {
+            Swal.fire({
+                icon: 'error',
+                title: 'ERRO',
+                text: 'Senhas não conferem'
+            })
         }
         else {
             setInterval("...", 5000)
-        }
 
-        // Enviando o valor da nova input
-        fetch("/usuarios/cadastrar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                nomeServer: nomeVar,
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            })
-        }).then(function (resposta) {
+            // Enviando o valor da nova input
+            fetch("/usuarios/cadastrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    nomeServer: nomeVar,
+                    emailServer: emailVar,
+                    senhaServer: senhaVar
+                })
+            }).then(function (resposta) {
 
-            console.log("resposta: ", resposta);
+                console.log("resposta: ", resposta);
 
-            if (resposta.ok) {
-                alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+                if (resposta.ok) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'CADASTRO',
+                        text: 'Cadastro realizado com sucesso! Redirecionando para tela de Login...'
+                    }).then(() => {
+                        window.location = "login.html";
+                    })
 
-                setTimeout(() => {
-                    window.location = "login.html";
-                }, "2000")
-
-                limparFormulario();
+                    limparFormulario();
+                    finalizarAguardar();
+                } else {
+                    alert("Houve um erro ao tentar realizar o cadastro!");
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
                 finalizarAguardar();
-            } else {
-                alert("Houve um erro ao tentar realizar o cadastro!");
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-            finalizarAguardar();
-        });
+            });
 
-        return false;
+            return false;
+        }
     }
 </script>

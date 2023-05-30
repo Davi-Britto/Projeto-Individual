@@ -19,6 +19,7 @@
             <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
 
             <div class="itens-nav">
+                <a href="./personagem.html">Personagens</a>
                 <a href="./avaliacao.html">Avaliar</a>
                 <a href="./avaliacao-geral.html" class="pag-atual">Ver Avaliações</a>
                 <a href="./dashboard.html">Dashboard</a>
@@ -36,6 +37,10 @@
 
             <div class="avaliacao-publicada">
                 <div class="feed-container">
+
+                    <div id="total_avaliacao" class="total-avaliacao">
+                        
+                    </div>
 
                     <table class="table-titulo" >
                         <tr>
@@ -64,6 +69,8 @@
 
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+    var contador = 0;
 
     function atualizarFeed() {
         var idUsuario = sessionStorage.ID_USUARIO;
@@ -112,7 +119,10 @@
 
                         feed.appendChild(linha);
                         
+                        contador++;
                     }
+
+                    total_avaliacao.innerHTML = `Total de Avaliações: ${contador}`;
 
                     finalizarAguardar();
                 });

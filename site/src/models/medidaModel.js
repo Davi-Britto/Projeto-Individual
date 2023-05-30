@@ -5,23 +5,16 @@ function buscarUltimasMedidas(idAvaliacao, limite_linhas) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select top ${limite_linhas}
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,  
-                        momento,
-                        FORMAT(momento, 'HH:mm:ss') as momento_grafico
-                    from medida
-                    where fk_aquario = ${idAvaliacao}
-                    order by id desc`;
+        instrucaoSql = `
+            select fkEstrela as Estrela, count(fkEstrela) as TotalEstrela from avaliacao
+            group by fkEstrela order by fkEstrela desc;
+        `;
+
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `select 
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,
-                        momento,
-                        DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico
-                    from medida
-                    where fk_aquario = ${idAvaliacao}
-                    order by id desc limit ${limite_linhas}`;
+        instrucaoSql = `
+            select fkEstrela as Estrela, count(fkEstrela) as TotalEstrela from avaliacao
+            group by fkEstrela order by fkEstrela desc;
+        `;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -36,22 +29,42 @@ function buscarMedidasEmTempoReal(idAvaliacao) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select top 1
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,  
-                        CONVERT(varchar, momento, 108) as momento_grafico, 
-                        fk_aquario 
-                        from medida where fk_aquario = ${idAvaliacao} 
-                    order by id desc`;
+        instrucaoSql = `
+            select fkEstrela as Estrela, count(fkEstrela) as TotalEstrela from avaliacao
+            group by fkEstrela order by fkEstrela desc;
+        `;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `select 
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,
-                        DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico, 
-                        fk_aquario 
-                        from medida where fk_aquario = ${idAvaliacao} 
-                    order by id desc limit 1`;
+        instrucaoSql = `
+            select fkEstrela as Estrela, count(fkEstrela) as TotalEstrela from avaliacao
+            group by fkEstrela order by fkEstrela desc;
+        `;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function personagem(idUsuario) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = `
+            select personagem.nome as NomePersonagem, count(fkPersonagem) as TotalVotos from usuario join personagem
+                on fkPersonagem = idPersonagem
+                    group by personagem.nome;
+        `;
+
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `
+            select personagem.nome as NomePersonagem, count(fkPersonagem) as TotalVotos from usuario join personagem
+                on fkPersonagem = idPersonagem
+                    group by personagem.nome;
+        `;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -64,5 +77,6 @@ function buscarMedidasEmTempoReal(idAvaliacao) {
 
 module.exports = {
     buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
+    buscarMedidasEmTempoReal,
+    personagem
 }

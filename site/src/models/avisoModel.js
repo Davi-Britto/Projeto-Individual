@@ -46,10 +46,30 @@ function listarPorUsuario(idUsuario) {
     return database.executar(instrucao);
 }
 
+function listarPersonagemPorUsuario(idUsuario) {
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarPorUsuario()");
+    var instrucao = `
+        select id, usuario.nome, usuario.fkPersonagem, personagem.nome as NomePersonagem from usuario join personagem
+            on fkPersonagem = idPersonagem
+                where id = ${idUsuario};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 function publicar(idUsuario, qtdEstrelas, descricao) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function publicar(): ", idUsuario, qtdEstrelas, descricao);
     var instrucao = `
         INSERT INTO avaliacao (fkUsuario, fkEstrela, descricao) VALUES ('${idUsuario}', '${qtdEstrelas}', '${descricao}');
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function cadastrarPersonagem(idUsuario, personagemEscolhido) {
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function publicar(): ", idUsuario, personagemEscolhido);
+    var instrucao = `
+        update usuario set fkPersonagem = ${personagemEscolhido} where id = ${idUsuario};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -76,8 +96,10 @@ function deletar(idAvaliacao) {
 module.exports = {
     listar,
     listarPorUsuario,
+    listarPersonagemPorUsuario,
     pesquisarDescricao,
     publicar,
+    cadastrarPersonagem,
     editar,
     deletar
 }

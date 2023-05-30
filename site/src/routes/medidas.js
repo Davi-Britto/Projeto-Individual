@@ -7,6 +7,10 @@ router.get("/ultimas/:idAvaliacao", function (req, res) {
     medidaController.buscarUltimasMedidas(req, res);
 });
 
+router.get("/personagem/:idUsuario", function (req, res) {
+    medidaController.personagem(req, res);
+});
+
 router.get("/tempo-real/:idAvaliacao", function (req, res) {
     medidaController.buscarMedidasEmTempoReal(req, res);
 })

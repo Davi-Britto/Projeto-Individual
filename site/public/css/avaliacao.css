@@ -280,3 +280,14 @@ h3 {
     font-weight: bold;
     transition: 0.5s;
 }
+
+.dashboard{
+    display: flex;
+    justify-content: center;
+    color: white;
+    text-shadow: -2px -2px 4px #b80000, 2px -2px 4px #0309c4;
+}
+
+.grafico1, .grafico2{
+    width: 50%;
+}

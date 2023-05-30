@@ -44,6 +44,31 @@ function listarPorUsuario(req, res) {
         );
 }
 
+function listarPersonagemPorUsuario(req, res) {
+    var idUsuario = req.params.idUsuario;
+
+    avisoModel.listarPersonagemPorUsuario(idUsuario)
+        .then(
+            function (resultado) {
+                if (resultado.length > 0) {
+                    res.status(200).json(resultado);
+                } else {
+                    res.status(204).send("Nenhum resultado encontrado!");
+                }
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "Houve um erro ao buscar os avisos: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 function pesquisarDescricao(req, res) {
     var descricao = req.params.descricao;
 
@@ -75,7 +100,7 @@ function publicar(req, res) {
         res.status(400).send("O id do usuário está indefinido!");
     } else if (descricao == undefined) {
         res.status(400).send("A descrição está vazia!");
-    } else if(descricao == ""){
+    } else if (descricao == "") {
         res.status(400).send("A descrição está indefinido!");
     } else if (qtdEstrelas == undefined) {
         res.status(400).send("A quantidade de estrelas está indefinido!");
@@ -100,6 +125,32 @@ function publicar(req, res) {
             }
         })
 
+    }
+}
+
+function cadastrarPersonagem(req, res) {
+    var idUsuario = req.params.idUsuario;
+    var personagemEscolhido = req.body.personagemEscolhido;
+
+
+    if (idUsuario == undefined) {
+        res.status(400).send("O id do usuário está indefinido!");
+    } else if (personagemEscolhido == 0) {
+        res.status(400).send("Personagem não foi escolhido");
+    } else {
+        avisoModel.cadastrarPersonagem(idUsuario, personagemEscolhido)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            )
+            .catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
     }
 }
 
@@ -146,8 +197,10 @@ module.exports = {
     testar,
     listar,
     listarPorUsuario,
+    listarPersonagemPorUsuario,
     pesquisarDescricao,
     publicar,
+    cadastrarPersonagem,
     editar,
     deletar
 }

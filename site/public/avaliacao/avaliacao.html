@@ -8,17 +8,21 @@
     <title>Document</title>
     <link rel="stylesheet" href="../css/avaliacao.css">
     <link rel="shortcut icon" href="favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body onload="atualizarFeed()">
     <div class="janela">
         <div class="nav-lateral">
-            <img src="./../img/Logo-icone/logo-semfundo.png" alt="">
+            <div id="nav_lateral">
+                <img src="./../img/Logo-icone/logo-semfundo.png" alt="">
+            </div>
             <h1>Avaliação</h1>
 
             <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
 
             <div class="itens-nav">
+                <a href="./personagem.html">Personagens</a>
                 <a href="./avaliacao.html" class="pag-atual">Avaliar</a>
                 <a href="./avaliacao-geral.html">Ver Avaliações</a>
                 <a href="./dashboard.html">Dashboard</a>
@@ -38,7 +42,7 @@
                 <div class="cartaz">
                     <img src="./../img/Logo-icone/cartaz.jpg">
                 </div>
-    
+
                 <form class="texto-avaliacao" method="post" onsubmit="return publicar()">
                     <span>Digite sua crítica:</span> <br>
                     <textarea id="textarea_avaliacao" cols="30" rows="10"></textarea>
@@ -58,12 +62,12 @@
             <div class="div-results">
                 <div id="feed_container" class="feed-container">
 
-               </div>
+                </div>
             </div>
 
         </div>
     </div>
-    
+
 </body>
 
 </html>
@@ -71,9 +75,11 @@
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
+    var icones = ['<img src="./../img/personagens/miles-icone.jpg">', '<img src="./../img/personagens/gwen-icone.jpg">', '<img src="./../img/personagens/peter-icone.jpg">', '<img src="./../img/personagens/noir-icone.jpg">', '<img src="./../img/personagens/porco-icone.jpg">', '<img src="./../img/personagens/peni-icone.jpg">'];
+
     var estrelas;
 
-    function umaEstrela(){
+    function umaEstrela() {
         div_estrelas.innerHTML = `
             <button onclick="umaEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
             <button onclick="duasEstrela()"><img src="./../img/Logo-icone/estrela-vazia.png"></button>
@@ -85,7 +91,7 @@
         estrelas = 1;
     }
 
-    function duasEstrela(){
+    function duasEstrela() {
         div_estrelas.innerHTML = `
             <button onclick="umaEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
             <button onclick="duasEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
@@ -97,7 +103,7 @@
         estrelas = 2;
     }
 
-    function tresEstrela(){
+    function tresEstrela() {
         div_estrelas.innerHTML = `
             <button onclick="umaEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
             <button onclick="duasEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
@@ -109,7 +115,7 @@
         estrelas = 3;
     }
 
-    function quatroEstrela(){
+    function quatroEstrela() {
         div_estrelas.innerHTML = `
             <button onclick="umaEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
             <button onclick="duasEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
@@ -121,7 +127,7 @@
         estrelas = 4;
     }
 
-    function cincoEstrela(){
+    function cincoEstrela() {
         div_estrelas.innerHTML = `
             <button onclick="umaEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
             <button onclick="duasEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
@@ -152,14 +158,26 @@
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
-                window.location = "/avaliacao/avaliacao.html";
+                setInterval('', 5000)
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'POST',
+                    text: `Post realizado com sucesso pelo usuario de ID: ${idUsuario}!`
+                }).then(() => {
+                    window.location = "/avaliacao/avaliacao.html"; w
+                })
+
                 // limparFormulario();
                 // finalizarAguardar();
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
-            } else if(resposta.status == 400){
-                alert("Campos vazios ou você já fez uma avaliação");
+            } else if (resposta.status == 400) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'ERRO',
+                    text: 'Campos vazios ou você já fez uma avaliação'
+                })
             } else {
                 throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
             }
@@ -251,8 +269,14 @@
     function editar(idAvaliacao) {
         sessionStorage.ID_AVALIACAO_EDITANDO = idAvaliacao;
         console.log("cliquei em editar - " + idAvaliacao);
-        window.alert("Você será redirecionado à página de edição da avaliação de id número: " + idAvaliacao);
-        window.location = "/avaliacao/edicao-avaliacao.html"
+        // window.alert("Você será redirecionado à página de edição da avaliação de id número: " + idAvaliacao);
+        Swal.fire({
+            icon: 'info',
+            title: 'EDITAR',
+            text: 'Você será redirecionado à página de edição da avaliação'
+        }).then(() => {
+            window.location = "/avaliacao/edicao-avaliacao.html"
+        })
 
     }
 
@@ -266,8 +290,15 @@
         }).then(function (resposta) {
 
             if (resposta.ok) {
-                window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "/avaliacao/avaliacao.html"
+                // window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+                Swal.fire({
+                    icon: 'success',
+                    title: 'DELETAR',
+                    text: `Post deletado com sucesso pelo usuario de email: ${sessionStorage.getItem("EMAIL_USUARIO")}!`
+                }).then(() => {
+                    window.location = "/avaliacao/avaliacao.html"
+                })
+                
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {

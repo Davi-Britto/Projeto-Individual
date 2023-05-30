@@ -36,3 +36,7 @@ cartaz - https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.adorocinema.com%2
 estrela vazia - https://www.flaticon.com/br/icone-gratis/estrela_126482?term=estrela&page=1&position=1&origin=search&related_id=126482
 
 estrela cheia - https://www.flaticon.com/br/icone-gratis/estrela_1828884?term=estrela&page=1&position=6&origin=search&related_id=1828884
+
+curtida vazia - https://www.flaticon.com/br/icone-gratis/gostar_880554?term=curtida&page=1&position=10&origin=search&related_id=880554
+
+curtida cheia - https://www.flaticon.com/br/icone-gratis/polegar-para-cima_889140?term=curtida&page=1&position=7&origin=search&related_id=889140
