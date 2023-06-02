@@ -26,7 +26,7 @@
                 </div>
                 <div class="senha">
                     <span>Senha:</span>
-                    <input id="senha_input"> <br>
+                    <input type="password" id="senha_input"> <br>
                 </div>
 
                 <div class="btn-login">
@@ -56,7 +56,8 @@
             Swal.fire({
                 icon: 'error',
                 title: 'ERRO',
-                text: 'Mensagem de erro para todos os campos em branco'
+                text: 'Mensagem de erro para todos os campos em branco',
+                confirmButtonColor: '#1e26fd'
             })
             finalizarAguardar();
             return false;
@@ -83,7 +84,8 @@
                     Swal.fire({
                         icon: 'success',
                         title: 'LOGIN',
-                        text: 'Login realizado com sucesso!'
+                        text: 'Login realizado com sucesso!',
+                        confirmButtonColor: '#1e26fd'
                     }).then(() => {
                         window.location = "./avaliacao/personagem.html";
                     })
@@ -104,7 +106,8 @@
                     Swal.fire({
                         icon: 'error',
                         title: 'ERRO',
-                        text: 'Houve um erro ao tentar realizar o login!'
+                        text: 'Houve um erro ao tentar realizar o login!',
+                        confirmButtonColor: '#1e26fd'
                     })
 
                     resposta.text().then(texto => {

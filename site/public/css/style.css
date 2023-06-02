@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Oswald:wght@400;500;700&family=Raleway:wght@600;800&display=swap');
 
-body{
+body {
     margin: 0;
     padding: 0;
     font-family: 'Oswald', sans-serif;
 }
 
-nav{
+nav {
     display: flex;
     justify-content: center;
     position: fixed;
@@ -14,18 +14,19 @@ nav{
     background-color: rgba(0, 0, 0, 0.411);
 }
 
-ul{
+ul {
     display: flex;
     justify-content: space-between;
     width: 80%;
 }
 
-ul img{
+ul img {
     width: 65px;
     height: 75px;
 }
 
-li, a{
+li,
+a {
     list-style: none;
     text-decoration: none;
     color: white;
@@ -34,7 +35,7 @@ li, a{
     display: flex;
 }
 
-.home{
+.home {
     background-image: url(./../img/Fundos/fundo-home2.jpg);
     background-size: cover;
     display: flex;
@@ -42,58 +43,58 @@ li, a{
     width: 100%;
 }
 
-.home .titulo{
+.home .titulo {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
 }
 
-.home h1{
+.home h1 {
     color: rgb(255, 255, 255);
     font-size: 90px;
     font-family: 'Raleway', sans-serif;
     text-align: center;
-    text-shadow:-4px -2px 4px #b80000,4px -2px 4px #0309c4;
+    text-shadow: -4px -2px 4px #b80000, 4px -2px 4px #0309c4;
 }
 
-.container{
+.container {
     display: flex;
     width: 100%;
     height: auto;
     background-color: black;
 }
 
-#sobre{
+#sobre {
     display: flex;
     justify-content: space-between;
 }
 
-.texto-sobre{
+.texto-sobre {
     width: 50%;
     padding: 45px;
 }
 
-.texto-sobre h1{
+.texto-sobre h1 {
     color: white;
     font-size: 55px;
-    text-shadow:-2px -2px 4px #b80000,2px -2px 4px #0309c4;
+    text-shadow: -2px -2px 4px #b80000, 2px -2px 4px #0309c4;
 }
 
-.texto-sobre p{
+.texto-sobre p {
     color: white;
     font-weight: 400;
     font-size: 25px;
 }
 
-.uniforme{
+.uniforme {
     display: flex;
     align-items: center;
     width: 35%;
     padding: 45px;
 }
 
-.img-sobre{
+.img-sobre {
     width: 100%;
     height: 100%;
     background-image: url(./../img/uniforme/uniforme-semfundo.png);
@@ -102,22 +103,22 @@ li, a{
     transition: 0.5s;
 }
 
-.img-sobre:hover{
+.img-sobre:hover {
     background-image: url(./../img/uniforme/sense-semfundo.png);
 }
 
-#personagens{
+#personagens {
     /* background-image: url(./img/fundo-home1.jpg);
     background-size: cover;
     background-repeat: no-repeat; */
     background-color: black;
 }
 
-.personagens{
+.personagens {
     padding: 45px;
 }
 
-.sobre-personagem{
+.sobre-personagem {
     display: flex;
     height: 400px;
     justify-content: space-between;
@@ -125,28 +126,28 @@ li, a{
     gap: 10vh;
 }
 
-.personagens h1{
+.personagens h1 {
     color: white;
     font-size: 55px;
     text-align: center;
-    text-shadow:-2px -2px 4px #b80000,2px -2px 4px #0309c4;
+    text-shadow: -2px -2px 4px #b80000, 2px -2px 4px #0309c4;
 }
 
-.sobre-personagem div h1{
+.sobre-personagem div h1 {
     font-size: 45px;
 }
 
-.sobre-personagem img{
+.sobre-personagem img {
     width: auto;
     height: 350px;
-   transition: 1s ease;
+    transition: 1s ease;
 }
 
-.sobre-personagem img:hover{
+.sobre-personagem img:hover {
     transform: scale(1.2);
 }
 
-.sobre-personagem p{
+.sobre-personagem p {
     display: flex;
     align-items: center;
     color: white;
@@ -155,59 +156,60 @@ li, a{
     font-weight: 400;
 }
 
-.opcoes-personagem{
+.opcoes-personagem {
     display: flex;
     justify-content: center;
 }
 
-.opcoes-personagem div{
+.opcoes-personagem div {
     display: flex;
     justify-content: space-between;
     width: 80%;
 }
 
-.opcoes-personagem button, .opcoes-personagem img{
+.opcoes-personagem button,
+.opcoes-personagem img {
     border-radius: 100px;
     cursor: pointer;
 }
 
-.opcoes-personagem img{
+.opcoes-personagem img {
     width: 100px;
     height: 100px;
 }
 
-#trilha-sonora{
+#trilha-sonora {
     display: flex;
     background-image: url(./../img/fundos/fundo-home.jpg);
     background-size: cover;
     background-repeat: no-repeat;
 }
 
-.musica{
+.musica {
     display: flex;
     flex-direction: column;
     padding: 45px;
     width: 40%;
 }
 
-.musica h1{
+.musica h1 {
     color: white;
     font-size: 55px;
-    text-shadow:-2px -2px 4px #b80000,2px -2px 4px #0309c4;
+    text-shadow: -2px -2px 4px #b80000, 2px -2px 4px #0309c4;
 }
 
-.musica img{
+.musica img {
     border-radius: 15px;
 }
 
-.sobre-musica{
+.sobre-musica {
     display: flex;
     align-items: center;
     width: 50%;
     padding: 45px;
 }
 
-.sobre-musica p{
+.sobre-musica p {
     color: white;
     font-size: 22px;
     text-align: end;
@@ -217,18 +219,167 @@ li, a{
     border-radius: 15px;
 }
 
-footer{
+#sobre-mim {
+    display: flex;
+}
+
+.sobre-mim {
+    display: flex;
+    flex-direction: column;
+    padding: 45px;
+    width: 40%;
+}
+
+.sobre-mim h1 {
+    color: white;
+    font-size: 55px;
+    text-shadow: -2px -2px 4px #b80000, 2px -2px 4px #0309c4;
+}
+
+.sobre-img {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    text-shadow: -2px -2px 4px #b80000, 2px -2px 4px #0309c4;
+}
+
+.sobre-mim .meu-perfil {
+    border-radius: 100%;
+    height: 350px;
+    width: 350px;
+    border: 5px white solid;
+    transition: 0.5s;
+}
+
+.sobre-mim .meu-perfil:hover {
+    border: 5px rgb(12, 12, 12) solid;
+}
+
+.sobre-mim .icones{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 15px;
+    width: 40%;
+}
+
+.sobre-mim .icon1{
+    height: 50px;
+    width: 50px;
+}
+
+.sobre-mim .icon2{
+    height: 50px;
+    width: 50px;
+    border-radius: 250px;
+}
+
+.sobre-texto{
+    display: flex;
+    flex-direction: column;
+    padding: 45px;
+    width: 45%;
+}
+
+.sobre-texto h1{
+    margin-top: 35px;
+    color: white;
+    font-size: 45px;
+    text-shadow: -2px -2px 4px #b80000, 2px -2px 4px #0309c4;
+}
+
+.sobre-texto p{
+    color: white;
+    font-size: 25px;
+    text-align: justify;
+}
+
+footer {
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
     width: 100%;
     height: auto;
     background-color: rgb(0, 0, 0);
+    border-top: 1px white solid;
 }
 
-footer p{
+footer div{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+footer .texto-footer {
     color: white;
     text-align: center;
-    text-shadow:-1px -1px 1px #b80000,1px -1px 1px #0309c4;
+    text-shadow: -1px -1px 1px #b80000, 1px -1px 1px #0309c4;
+}
 
+footer div a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 0px;
+    text-shadow: -1px -1px 1px #b80000, 1px -1px 1px #0309c4;
+    font-size: 15px;
+}
+
+.container-copyright{
+    width: 100%;
+    height: auto;
+    background-color: black;
+    word-wrap: break-word;
+    position: relative;
+}
+
+.btn-copyright{
+    position: absolute;
+    background: rgb(89,22,22);
+    background: linear-gradient(135deg, rgba(89,22,22,1) 0%, rgba(135,0,31,1) 15%, rgba(56,0,51,1) 63%, rgba(6,0,64,1) 100%);
+    border-radius: 100%;
+    border: none;
+    cursor: pointer;
+    transition: 0.5s;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 25px;
+    left: 55px;
+}
+
+.btn-copyright:hover{
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+
+.btn-copyright img{
+    width: 40px;
+    height: 40px;
+}
+
+.conteudo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.conteudo h1{
+    text-align: center;
+    color: white;
+    text-shadow: -2px -2px 4px #b80000, 2px -2px 4px #0309c4;
+}
+
+.link-copyright{
+    width: 50%;
+    font-size: 15px;
+    color: white;
 }

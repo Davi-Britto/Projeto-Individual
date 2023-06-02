@@ -92,7 +92,7 @@ h3 {
     top: 0;
     left: 20%;
     background-color: #101010;
-    height: 100vh;
+    height: 100%;
     overflow: auto;
 }
 
@@ -136,6 +136,7 @@ h3 {
     width: 80%;
     text-align: center;
     color: white;
+    margin-bottom: 80px;
 }
 
 .publicacao-id{

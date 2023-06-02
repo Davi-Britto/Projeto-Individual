@@ -163,7 +163,8 @@
                 Swal.fire({
                     icon: 'success',
                     title: 'POST',
-                    text: `Post realizado com sucesso pelo usuario de ID: ${idUsuario}!`
+                    text: `Post realizado com sucesso pelo usuario de ID: ${idUsuario}!`,
+                    confirmButtonColor: '#1e26fd'
                 }).then(() => {
                     window.location = "/avaliacao/avaliacao.html"; w
                 })
@@ -176,7 +177,8 @@
                 Swal.fire({
                     icon: 'error',
                     title: 'ERRO',
-                    text: 'Campos vazios ou você já fez uma avaliação'
+                    text: 'Campos vazios ou você já fez uma avaliação',
+                    confirmButtonColor: '#1e26fd'
                 })
             } else {
                 throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
@@ -273,7 +275,8 @@
         Swal.fire({
             icon: 'info',
             title: 'EDITAR',
-            text: 'Você será redirecionado à página de edição da avaliação'
+            text: 'Você será redirecionado à página de edição da avaliação',
+            confirmButtonColor: '#1e26fd'
         }).then(() => {
             window.location = "/avaliacao/edicao-avaliacao.html"
         })
@@ -282,31 +285,52 @@
 
     function deletar(idAvaliacao) {
         console.log("Criar função de apagar avaliação escolhido - ID" + idAvaliacao);
-        fetch(`/avisos/deletar/${idAvaliacao}`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }).then(function (resposta) {
 
-            if (resposta.ok) {
-                // window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+        // window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+
+        Swal.fire({
+            title: 'DELETAR PUBLICAÇÃO',
+            text: "Você tem certeza que deseja deletar?",
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: 'Deletar',
+            denyButtonText: `Cancelar`,
+            confirmButtonColor: '#1e26fd',
+            denyButtonColor: '#ff2222',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`/avisos/deletar/${idAvaliacao}`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }).then(function (resposta) {
+                    if (resposta.ok) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Bom trabalho!',
+                            text: 'Publicação deletada com sucesso',
+                            confirmButtonColor: '#1e26fd',
+                            timer: 4500
+                        }).then(() => {
+                            window.location = "/avaliacao/avaliacao.html"
+                        })
+                    } else {
+                        Swal.fire('Falha ao deletar o Publicação', '', 'error')
+                    }
+                }).catch(function (resposta) {
+                    console.log(resposta);
+                });
+            } else if (result.isDenied) {
                 Swal.fire({
-                    icon: 'success',
-                    title: 'DELETAR',
-                    text: `Post deletado com sucesso pelo usuario de email: ${sessionStorage.getItem("EMAIL_USUARIO")}!`
-                }).then(() => {
-                    window.location = "/avaliacao/avaliacao.html"
+                    icon: 'info',
+                    text: 'Publicação não deletada',
+                    confirmButtonColor: '#1e26fd',
+                    timer: 4500
                 })
-                
-            } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
-            } else {
-                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
             }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
         });
+
     }
 
 </script>

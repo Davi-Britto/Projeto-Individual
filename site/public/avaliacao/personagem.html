@@ -417,7 +417,8 @@
                 Swal.fire({
                     icon: 'success',
                     title: 'Personagem Favorito',
-                    text: `Personagem favorito escolhido com sucesso pelo usuario de ID: ${idUsuario}!`
+                    text: `Personagem favorito escolhido com sucesso pelo usuario de ID: ${idUsuario}!`,
+                    confirmButtonColor: '#1e26fd'
                 }).then(() => {
                     window.location = "/avaliacao/personagem.html";
                 })
@@ -429,7 +430,8 @@
                 Swal.fire({
                     icon: 'error',
                     title: 'ERRO',
-                    text: 'Você não escolheu um personagem favorito, por favor, escolha um personagem'
+                    text: 'Você não escolheu um personagem favorito, por favor, escolha um personagem',
+                    confirmButtonColor: '#1e26fd'
                 })
             } else {
                 throw ("Houve um erro ao tentar escolher um personagem! Código da resposta: " + resposta.status);

@@ -35,7 +35,7 @@
             </div>
 
             <div class="avaliacao">
-    
+
                 <div class="texto-avaliacao">
                     <span>Edite sua crítica:</span> <br>
                     <textarea id="textarea_avaliacao" cols="30" rows="10"></textarea>
@@ -55,12 +55,12 @@
             <div class="div-results">
                 <div id="feed_container" class="feed-container">
 
-               </div>
+                </div>
             </div>
 
         </div>
     </div>
-    
+
 </body>
 
 </html>
@@ -70,7 +70,7 @@
 
     var estrelas;
 
-    function umaEstrela(){
+    function umaEstrela() {
         div_estrelas.innerHTML = `
             <button onclick="umaEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
             <button onclick="duasEstrela()"><img src="./../img/Logo-icone/estrela-vazia.png"></button>
@@ -82,7 +82,7 @@
         estrelas = 1;
     }
 
-    function duasEstrela(){
+    function duasEstrela() {
         div_estrelas.innerHTML = `
             <button onclick="umaEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
             <button onclick="duasEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
@@ -94,7 +94,7 @@
         estrelas = 2;
     }
 
-    function tresEstrela(){
+    function tresEstrela() {
         div_estrelas.innerHTML = `
             <button onclick="umaEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
             <button onclick="duasEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
@@ -106,7 +106,7 @@
         estrelas = 3;
     }
 
-    function quatroEstrela(){
+    function quatroEstrela() {
         div_estrelas.innerHTML = `
             <button onclick="umaEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
             <button onclick="duasEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
@@ -118,7 +118,7 @@
         estrelas = 4;
     }
 
-    function cincoEstrela(){
+    function cincoEstrela() {
         div_estrelas.innerHTML = `
             <button onclick="umaEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
             <button onclick="duasEstrela()"><img src="./../img/Logo-icone/estrela-cheia.png"></button>
@@ -146,12 +146,20 @@
                 Swal.fire({
                     icon: 'success',
                     title: 'POST',
-                    text: `Post atualizado com sucesso pelo usuario de email: ${sessionStorage.getItem("EMAIL_USUARIO")}!`
+                    text: `Post atualizado com sucesso pelo usuario de email: ${sessionStorage.getItem("EMAIL_USUARIO")}!`,
+                    confirmButtonColor: '#1e26fd'
                 }).then(() => {
                     window.location = "/avaliacao/avaliacao.html";
                 })
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
+            } else if (resposta.status == 400) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'ERRO',
+                    text: 'Campos vazios',
+                    confirmButtonColor: '#1e26fd'
+                })
             } else {
                 throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
             }
@@ -160,6 +168,6 @@
         });
     }
 
-    
+
 
 </script>

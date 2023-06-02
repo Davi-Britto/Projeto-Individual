@@ -159,19 +159,29 @@ function editar(req, res) {
     var novaEstrela = req.body.qtdEstrelas;
     var idAvaliacao = req.params.idAvaliacao;
 
-    avisoModel.editar(novaDescricao, novaEstrela, idAvaliacao)
-        .then(
-            function (resultado) {
-                res.json(resultado);
-            }
-        )
-        .catch(
-            function (erro) {
-                console.log(erro);
-                console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
+    if (novaDescricao == undefined) {
+        res.status(400).send("A descrição está vazia!");
+    } else if (novaDescricao == "") {
+        res.status(400).send("A descrição está indefinido!");
+    } else if (novaEstrela == undefined) {
+        res.status(400).send("A quantidade de estrelas está indefinido!");
+    } else {
+        avisoModel.editar(novaDescricao, novaEstrela, idAvaliacao)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            )
+            .catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+
+
 
 }
 
