@@ -6,6 +6,20 @@ body {
     font-family: 'Oswald', sans-serif;
 }
 
+::-webkit-scrollbar {
+    width: 13px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #101010;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #930000;
+    background: linear-gradient(to bottom, #101010 0%, #930000 25%, #930000 50%, #930000 76%, #101010 100%);
+}
+
 .container-copyright{
     width: 100%;
     height: auto;
